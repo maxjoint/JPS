@@ -1,0 +1,111 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Результат поиска участников</title>
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        h2 {
+            font-family: sans-serif;
+            font-size: 24;
+            color: black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        h3 {
+            font-family: sans-serif;
+            font-size: 18;
+            color: black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .center {
+            width: 650px;
+            /* Ширина элемента в пикселах */
+            padding: 5px;
+            /* Поля вокруг текста */
+            margin: auto;
+            /* Выравниваем по центру */
+        }
+
+        .divbutton {
+            width: 200px;
+            /* Ширина элемента в пикселах */
+            padding: 100px 10px 10px 10px;
+            /* Поля вокруг текста */
+            margin: auto;
+            /* Выравниваем по центру */
+        }
+
+        .button {
+            background-color: royalblue;
+            border: none;
+            color: snow;
+            padding: 15px 32px;
+            text-align: center;
+            margin: auto 0;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+
+        table, td {
+            border-collapse: collapse;
+            width: auto;
+            padding: 15px;
+            font-family: sans-serif;
+            font-size: 16px;
+            color: black;
+            text-align: left;
+        }
+
+        .tdname {
+            font-weight: 900;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="center">
+    <div th:if="${participants == null || participants.isEmpty()}">
+        <h2>Участник не найден</h2>
+    </div>
+    <div th:if="${participants != null && !participants.isEmpty()}">
+        <h2>Данные участника:</h2>
+
+        <th:block th:each="participant : ${participants}">
+            <table>
+                <tr>
+                    <td class="tdname">Номер билета:</td>
+                    <td th:text="${participant.ticketNumber}"></td>
+                </tr>
+
+                <tr>
+                    <td class="tdname">Имя и фамилия участника:</td>
+                    <td th:text="${participant.firstName} + ' ' + ${participant.lastName}"></td>
+                </tr>
+                <tr>
+                    <td class="tdname">Email участника:</td>
+                    <td th:text="${participant.email}"></td>
+                </tr>
+                <tr>
+                    <td class="tdname">Компания:</td>
+                    <td th:text="${participant.company}"></td>
+                </tr>
+            </table>
+            <hr>
+        </th:block>
+    </div>
+    <div class="divbutton">
+        <a href="/participant/info" class="button">Новый поиск</a>
+    </div>
+</div>
+</body>
+</html>

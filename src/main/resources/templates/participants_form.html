@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Поиск участника</title>
+    <style>
+        h2 {
+            font-family: sans-serif;
+            font-size: 24;
+            color: black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .center {
+            width: 650px; /* Ширина элемента в пикселах */
+            padding: 5px; /* Поля вокруг текста */
+            margin: auto; /* Выравниваем по центру */
+        }
+
+        .form {
+            width: 600px; /* Ширина элемента в пикселах */
+            padding: 10px; /* Поля вокруг текста */
+            margin: auto; /* Выравниваем по центру */
+
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            font-size: 16;
+        }
+
+        .divbutton {
+            width: 100px; /* Ширина элемента в пикселах */
+            padding: 10px; /* Поля вокруг текста */
+            margin: auto; /* Выравниваем по центру */
+        }
+
+        .button {
+            background-color: royalblue;
+            border: none;
+            color: snow;
+            padding: 15px 32px;
+            text-align: center;
+            margin: auto 0;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            font-family: sans-serif;
+        }
+
+        .right {
+            position: absolute;
+            right: 0px;
+            width: 300px;
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="center">
+    <h2>Введите данные участника:</h2>
+
+    <div class="form">
+        <form action="#" th:action="@{/participants/info}" th:object="${participant_form}" method="post">
+            <input type="text" autocomplete="off" size="100" required="required" th:field="*{searchValue}"/>
+            <div class="divbutton">
+                <input class="button" type="submit" value="Найти"/>
+            </div>
+        </form>
+    </div>
+
+    <div class="right" style="font-size: 10">
+        <form action="#" th:action="@{/participants/all}" method="get">
+            <input type="submit" value="Показать всех"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>
